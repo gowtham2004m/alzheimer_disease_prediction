@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alzheimer's Prediction</title>
+</head>
+<body>
+    <h1>Alzheimer's Prediction</h1>
+    <form action="/predict" method="post">
+        {% for column in columns %}
+            <label for="{{ column }}">{{ column }}:</label>
+            <input type="text" id="{{ column }}" name="{{ column }}" required><br><br>
+        {% endfor %}
+        
+        <input type="submit" value="Predict">
+    </form>
+</body>
+</html>

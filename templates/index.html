@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alzheimer's Disease Detection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .form-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .image-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .image-container img {
+            max-width: 45%;
+            margin: 0 10px;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .btn-upload {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+
+        .btn-upload-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Alzheimer's Disease Detection</h1>
+    <div class="container">
+        <form class="form-container" action="/predict" method="post" enctype="multipart/form-data">
+            <input id="file-upload" type="file" name="image" accept="image/*">
+            <label for="file-upload" class="btn-upload">Upload Image</label>
+            <button class="btn-upload" type="submit">Predict</button>
+        </form>
+        {% if uploaded_image %}
+        <div class="image-container">
+            <img src="data:image/jpeg;base64,{{ uploaded_image }}" alt="Uploaded Image">
+            {% if predicted_image %}
+            <img src="data:image/jpeg;base64,{{ predicted_image }}" alt="Predicted Image">
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alzheimer's Disease Detection</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <h1>Alzheimer's Disease Detection</h1>
+    </header>
+    <main>
+        <div class="container">
+            <form class="form-container" action="/predict" method="post" enctype="multipart/form-data">
+                <label for="file-upload" class="btn-upload">Choose Image</label>
+                <input id="file-upload" type="file" name="image" accept="image/*">
+                <button class="btn-predict" type="submit">Predict</button>
+            </form>
+            {% if uploaded_image %}
+            <div class="image-container">
+                <div class="image-preview">
+                    <img src="data:image/jpeg;base64,{{ uploaded_image }}" alt="Uploaded Image">
+                    <span class="file-name">Selected Image</span>
+                </div>
+                {% if predicted_image %}
+                <div class="image-preview">
+                    <img src="data:image/jpeg;base64,{{ predicted_image }}" alt="Predicted Image">
+                    <span class="prediction {% if predicted_class == 'Demented' %}demented{% else %}non-demented{% endif %}">Prediction: {{ predicted_class }}</span>
+                </div>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </main>
+    <footer>
+        <p>Designed by tech_guys</p>
+    </footer>
+</body>
+</html> -->
